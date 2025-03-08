@@ -68,7 +68,7 @@ export default function MediaUploadSection() {
 
       setPrediction(mockPrediction);
       setConfidenceScore(mockConfidence);
-      setResult(`Prediction: ${mockPrediction} (Confidence: ${(mockConfidence * 100).toFixed(2)}%)`);
+      setResult(`Prediction: ${mockPrediction} `);
 
 
       const formData = new FormData();
@@ -92,7 +92,7 @@ export default function MediaUploadSection() {
       const data = await response.json();
       setPrediction(data.prediction);
       setConfidenceScore(data.confidence);
-      setResult(`Prediction: ${data.prediction} (Confidence: ${(data.confidence * 100).toFixed(2)}%)`);
+      setResult(`Prediction: ${data.prediction} `);
 
 
     } catch (error) {
