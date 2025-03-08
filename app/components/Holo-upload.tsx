@@ -14,8 +14,8 @@ export default function MediaUploadSection() {
   const [result, setResult] = useState<string>("");
   const [prediction, setPrediction] = useState<string>("");
   const [showRing, setShowRing] = useState<boolean>(false);
-  const [activeDemoTab, setActiveDemoTab] = useState<string>("upload");
-  const [isIntroVisible, setIsIntroVisible] = useState<boolean>(true);
+  const [activeDemoTab] = useState<string>("upload");
+  const [isIntroVisible] = useState<boolean>(true);
   const [showResultDetails, setShowResultDetails] = useState<boolean>(false);
   const ringRef = useRef<HTMLDivElement>(null);
 
