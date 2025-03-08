@@ -19,16 +19,6 @@ export default function MediaUploadSection() {
   const [showResultDetails, setShowResultDetails] = useState<boolean>(false);
   const ringRef = useRef<HTMLDivElement>(null);
 
-  // Demo data for neural network visualization
-  const demoNetworkLayers = [
-    { name: "Input Layer", nodes: 784 },
-    { name: "Conv2D", nodes: 32 },
-    { name: "MaxPooling", nodes: 32 },
-    { name: "Conv2D", nodes: 64 },
-    { name: "MaxPooling", nodes: 64 },
-    { name: "Dense", nodes: 128 },
-    { name: "Output", nodes: 2 }
-  ];
 
   // Show ring immediately but it will start at size 0 and grow
   useEffect(() => {
