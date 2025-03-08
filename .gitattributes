@@ -1,0 +1,4 @@
+*.keras filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+brain_tumor_model.keras filter=lfs diff=lfs merge=lfs -text
+public/vecteezy_rotating-human-brain-electrically-charged_1622898.mp4 filter=lfs diff=lfs merge=lfs -text
