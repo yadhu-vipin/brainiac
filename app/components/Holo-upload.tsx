@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Upload, Brain, Loader, AlertCircle, CheckCircle, Info, ChevronRight, Command, BarChart } from "lucide-react";
+import { Upload, Brain, Loader, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function MediaUploadSection() {
@@ -10,7 +10,6 @@ export default function MediaUploadSection() {
   const [fileName, setFileName] = useState<string>("");
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const [result, setResult] = useState<string>("");
-  const [confidenceScore, setConfidenceScore] = useState<number>(0);
   const [prediction, setPrediction] = useState<string>("");
   const [showRing, setShowRing] = useState<boolean>(false);
   const [activeDemoTab, setActiveDemoTab] = useState<string>("upload");
@@ -43,7 +42,6 @@ export default function MediaUploadSection() {
       setFileName(file.name);
       setResult("");
       setPrediction("");
-      setConfidenceScore(0);
       setShowResultDetails(false);
     }
   };
@@ -54,7 +52,6 @@ export default function MediaUploadSection() {
     setIsScanning(true);
     setResult("");
     setPrediction("");
-    setConfidenceScore(0);
     setShowResultDetails(false);
 
     try {
@@ -67,7 +64,6 @@ export default function MediaUploadSection() {
       const mockConfidence = Math.random() * 0.3 + 0.7; // Random between 70-100%
 
       setPrediction(mockPrediction);
-      setConfidenceScore(mockConfidence);
       setResult(`Prediction: ${mockPrediction} `);
 
 
@@ -91,7 +87,7 @@ export default function MediaUploadSection() {
 
       const data = await response.json();
       setPrediction(data.prediction);
-      setConfidenceScore(data.confidence);
+
       setResult(`Prediction: ${data.prediction} `);
 
 
