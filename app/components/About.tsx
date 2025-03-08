@@ -76,10 +76,10 @@ export default function AboutUs() {
             >
               <h2 className="text-3xl font-bold mb-6 text-blue-400">Our Story</h2>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Our journey began when we recognized a critical gap in early brain tumor detection technology. Traditional methods were time-consuming and often required specialized expertise that wasn't always available, particularly in underserved communities.
+                Our journey began when we recognized a critical gap in early brain tumor detection technology. Traditional methods were time-consuming and often required specialized expertise that wasn&apos;t always available, particularly in underserved communities.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                By combining our expertise in AI, medical imaging, and user experience design, we've created a solution that empowers healthcare providers to detect brain tumors earlier , and based on which they can create better outcomes of treatment .
+                By combining our expertise in AI, medical imaging, and user experience design, we&apos;ve created a solution that empowers healthcare providers to detect brain tumors earlier , and based on which they can create better outcomes of treatment .
               </p>
             </motion.div>
           )}
@@ -92,7 +92,7 @@ export default function AboutUs() {
             >
               <h2 className="text-3xl font-bold mb-6 text-purple-400">Our Mission</h2>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                We're on a mission to democratize access to advanced medical diagnostics, making early detection available to all communities regardless of resources or location. We believe that cutting-edge healthcare technology should be accessible to everyone.
+                We&apos;re on a mission to democratize access to advanced medical diagnostics, making early detection available to all communities regardless of resources or location. We believe that cutting-edge healthcare technology should be accessible to everyone.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 Our goal is to reduce diagnosis time by 50% while improving accuracy to over 99%, allowing medical professionals to focus on what matters most: patient care and treatment planning.
