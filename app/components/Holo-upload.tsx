@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Upload, Brain, Loader, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image';
+
 
 export default function MediaUploadSection() {
   const defaultVideo = "/vecteezy_rotating-human-brain-electrically-charged_1622898.mp4";
@@ -58,14 +60,6 @@ export default function MediaUploadSection() {
       // Simulate API call with a delay for demo purposes
       await new Promise(resolve => setTimeout(resolve, 3500));
 
-      // Demo result - in production, this would be the actual API call
-      const mockPredictions = ["Tumor Detected", "No Tumor Detected"];
-      const mockPrediction = mockPredictions[Math.floor(Math.random() * 2)];
-      const mockConfidence = Math.random() * 0.3 + 0.7; // Random between 70-100%
-
-      setPrediction(mockPrediction);
-      setResult(`Prediction: ${mockPrediction} `);
-
 
       const formData = new FormData();
       const fileInput = document.querySelector("input[type=file]") as HTMLInputElement;
@@ -99,9 +93,7 @@ export default function MediaUploadSection() {
   };
 
 
-  const hideIntro = () => {
-    setIsIntroVisible(false);
-  };
+ 
 
   return (
     <div className="w-screen bg-gradient-to-b from-black via-gray-1200 to-black text-white flex flex-col items-center font-sans">
@@ -219,7 +211,7 @@ export default function MediaUploadSection() {
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gray-900">
                           {mediaSrc !== defaultVideo ? (
-                            <img src={mediaSrc} alt="MRI Scan" className="max-w-full max-h-full object-contain" />
+                            <Image src={mediaSrc} alt="MRI Scan" className="max-w-full max-h-full object-contain" />
                           ) : (
                             <div className="text-gray-500 text-center p-4">
                               <Upload className="w-12 h-12 mx-auto mb-2" />
