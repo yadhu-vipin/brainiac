@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[context.production.environment]
+  FLASK_ENV = "production"
+  # Add other environment variables here if needed
