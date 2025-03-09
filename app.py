@@ -4,7 +4,6 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from PIL import Image
 import io
-import os
 import requests
 from flask_cors import CORS
 
@@ -15,27 +14,25 @@ CORS(app)  # Allow frontend requests
 MODEL_URL = "https://github.com/yadhu-vipin/brainiac/releases/download/v1.0.0/brain_tumor_model.keras"
 MODEL_PATH = "brain_tumor_model.keras"
 
-# Function to download the model if it doesn't exist
-def download_model():
-    if not os.path.exists(MODEL_PATH):
-        print("📥 Downloading model from GitHub...")
-        response = requests.get(MODEL_URL, stream=True)
-        if response.status_code == 200:
-            with open(MODEL_PATH, "wb") as file:
-                for chunk in response.iter_content(chunk_size=8192):
-                    file.write(chunk)
-            print("✅ Model downloaded successfully!")
-        else:
-            print(f"❌ Failed to download model: {response.status_code}")
+# Download model from URL
+print("📥 Downloading model from GitHub...")
+response = requests.get(MODEL_URL, stream=True)
+if response.status_code == 200:
+    with open(MODEL_PATH, "wb") as file:
+        for chunk in response.iter_content(chunk_size=8192):
+            file.write(chunk)
+    print("✅ Model downloaded successfully!")
+else:
+    print(f"❌ Failed to download model: {response.status_code}")
+    exit(1)
 
-# Download and load the model
-download_model()
-model = None
+# Load the model
 try:
     model = load_model(MODEL_PATH)
     print("✅ Model loaded successfully!")
 except Exception as e:
     print(f"❌ Error loading model: {e}")
+    exit(1)
 
 # Define class labels
 CLASS_LABELS = ["glioma_tumor", "meningioma_tumor", "no_tumor", "pituitary_tumor"]
@@ -55,9 +52,6 @@ def predict():
 
         img_array = np.array(image) / 255.0  # Normalize
         img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-
-        if model is None:
-            return jsonify({"error": "Model not available"}), 500
 
         prediction = model.predict(img_array)
         predicted_class = np.argmax(prediction)
