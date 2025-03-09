@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from PIL import Image
 import io
+import os
 import requests
 from flask_cors import CORS
 
@@ -14,19 +15,22 @@ CORS(app)  # Allow frontend requests
 MODEL_URL = "https://github.com/yadhu-vipin/brainiac/releases/download/v1.0.0/brain_tumor_model.keras"
 MODEL_PATH = "brain_tumor_model.keras"
 
-# Download model from URL
-print("📥 Downloading model from GitHub...")
-response = requests.get(MODEL_URL, stream=True)
-if response.status_code == 200:
-    with open(MODEL_PATH, "wb") as file:
-        for chunk in response.iter_content(chunk_size=8192):
-            file.write(chunk)
-    print("✅ Model downloaded successfully!")
+# Check if model file already exists
+if not os.path.exists(MODEL_PATH):
+    print("📥 Downloading model from GitHub...")
+    response = requests.get(MODEL_URL, stream=True)
+    if response.status_code == 200:
+        with open(MODEL_PATH, "wb") as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print("✅ Model downloaded successfully!")
+    else:
+        print(f"❌ Failed to download model: {response.status_code}")
+        exit(1)
 else:
-    print(f"❌ Failed to download model: {response.status_code}")
-    exit(1)
+    print("✅ Model already exists, skipping download.")
 
-# Load the model
+# Load the model once
 try:
     model = load_model(MODEL_PATH)
     print("✅ Model loaded successfully!")
