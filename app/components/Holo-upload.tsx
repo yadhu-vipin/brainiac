@@ -201,7 +201,15 @@ export default function MediaUploadSection() {
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gray-900">
                           {mediaSrc !== defaultVideo ? (
-                            <Image src={mediaSrc} alt="MRI Scan" className="max-w-full max-h-full object-contain" />
+                            <Image 
+                            src={mediaSrc} 
+                            alt="MRI Scan" 
+                            width={500} // Set appropriate width
+                            height={500} // Set appropriate height
+                            className="max-w-full max-h-full object-contain" 
+                            unoptimized={true} // Required for blob URLs
+                          />
+                          
                           ) : (
                             <div className="text-gray-500 text-center p-4">
                               <Upload className="w-12 h-12 mx-auto mb-2" />
